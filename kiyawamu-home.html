@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KIYAWAMU.LK — Rare & Vintage Books</title>
+  <meta name="description" content="Sri Lanka's premier destination for old, vintage, and used books. Discover rare treasures from our curated archives." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            parchment:   '#F4F1EA',
+            'parchment-dark': '#EAE4D5',
+            forest:      '#1A432E',
+            'forest-light': '#235C3E',
+            charcoal:    '#2C302E',
+            gold:        '#C5A059',
+            'gold-light': '#D4B476',
+            'gold-pale':  '#F0E4C4',
+            cream:       '#FDFAF3',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            cinzel:  ['Cinzel', 'serif'],
+            body:    ['Lato', 'system-ui', 'sans-serif'],
+          },
+          backgroundImage: {
+            'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
+          },
+          boxShadow: {
+            'card': '0 2px 12px 0 rgba(44,48,46,0.10), 0 1px 3px 0 rgba(44,48,46,0.06)',
+            'card-hover': '0 8px 30px 0 rgba(44,48,46,0.15), 0 2px 8px 0 rgba(197,160,89,0.20)',
+            'nav': '0 2px 16px 0 rgba(44,48,46,0.12)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lato', system-ui, sans-serif;
+      background-color: #F4F1EA;
+      color: #2C302E;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Noise texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+    body > * { position: relative; z-index: 1; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #F4F1EA; }
+    ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 3px; }
+
+    /* ── Logo mark ── */
+    .logo-mark {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.05em;
+    }
+    .logo-mark span { color: #C5A059; }
+
+    /* ── Nav ── */
+    .nav-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(244, 241, 234, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(197,160,89,0.25);
+      box-shadow: 0 2px 16px rgba(44,48,46,0.08);
+    }
+
+    /* ── Search bar ── */
+    .search-bar {
+      background: rgba(255,255,255,0.7);
+      border: 1.5px solid #C5A059;
+      border-radius: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-bar:focus-within {
+      border-color: #1A432E;
+      box-shadow: 0 0 0 3px rgba(26,67,46,0.12);
+    }
+    .search-bar input { background: transparent; outline: none; }
+    .search-bar input::placeholder { color: #8a8a7a; }
+
+    /* ── Hero ── */
+    .hero-section {
+      background-color: #1A432E;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(197,160,89,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(197,160,89,0.08) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='60' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4' y='4' width='12' height='112' rx='2' fill='none' stroke='rgba(197,160,89,0.06)' stroke-width='1'/%3E%3Crect x='20' y='10' width='10' height='100' rx='2' fill='none' stroke='rgba(197,160,89,0.04)' stroke-width='1'/%3E%3Crect x='34' y='2' width='14' height='116' rx='2' fill='none' stroke='rgba(197,160,89,0.07)' stroke-width='1'/%3E%3Crect x='52' y='8' width='6' height='104' rx='2' fill='none' stroke='rgba(197,160,89,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: auto, auto, 60px 120px;
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26,67,46,0.85) 0%, rgba(26,67,46,0.55) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-ornament {
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #C5A059, transparent);
+      margin: 16px auto;
+    }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      background-color: #1A432E;
+      color: #F4F1EA;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      padding: 14px 32px;
+      border-radius: 4px;
+      border: 2px solid transparent;
+      transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background-color: #235C3E;
+      border-color: #C5A059;
+      box-shadow: 0 4px 16px rgba(197,160,89,0.25);
+      transform: translateY(-1px);
+    }
+    .btn-primary:focus-visible {
+      outline: 3px solid #C5A059;
+      outline-offset: 2px;
+    }
+
+    .btn-primary-gold {
+      background-color: #C5A059;
+      color: #1A432E;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      padding: 12px 28px;
+      border-radius: 4px;
+      border: 2px solid #C5A059;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary-gold:hover {
+      background-color: #1A432E;
+      color: #C5A059;
+      box-shadow: 0 4px 14px rgba(26,67,46,0.2);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #C5A059;
+      color: #2C302E;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      padding: 9px 18px;
+      border-radius: 4px;
+      transition: all 0.2s;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-outline:hover {
+      background: #1A432E;
+      border-color: #1A432E;
+      color: #F4F1EA;
+    }
+
+    /* ── Hero CTA (on dark bg) ── */
+    .btn-hero {
+      background-color: #C5A059;
+      color: #1A432E;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      padding: 16px 40px;
+      border-radius: 4px;
+      border: 2px solid #C5A059;
+      transition: all 0.25s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-hero:hover {
+      background-color: transparent;
+      color: #C5A059;
+      box-shadow: 0 6px 20px rgba(197,160,89,0.35);
+      transform: translateY(-2px);
+    }
+    .btn-hero:focus-visible {
+      outline: 3px solid #F4F1EA;
+      outline-offset: 3px;
+    }
+
+    /* ── Section divider ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #C5A059, transparent);
+    }
+    .section-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C5A059;
+    }
+
+    /* ── Book card ── */
+    .book-card {
+      background: #FDFAF3;
+      border: 1px solid rgba(197,160,89,0.2);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(44,48,46,0.08);
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .book-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(44,48,46,0.14), 0 2px 8px rgba(197,160,89,0.18);
+      border-color: #C5A059;
+    }
+
+    .book-cover {
+      position: relative;
+      background: linear-gradient(145deg, #2C302E 0%, #1A432E 40%, #0f2d1e 100%);
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .book-cover-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .book-spine-lines {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: repeating-linear-gradient(
+        180deg,
+        rgba(197,160,89,0.3) 0px,
+        rgba(197,160,89,0.3) 1px,
+        transparent 1px,
+        transparent 8px
+      );
+    }
+
+    .book-cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #F4F1EA;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .book-cover-author {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(197,160,89,0.85);
+    }
+
+    .book-cover-ornament {
+      width: 40px;
+      height: 1px;
+      background: rgba(197,160,89,0.5);
+      margin: 12px auto;
+    }
+
+    .book-cover-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      opacity: 0.6;
+    }
+
+    /* condition badge colours */
+    .badge-vintage   { background: rgba(197,160,89,0.15); color: #8a6a1f; border: 1px solid rgba(197,160,89,0.4); }
+    .badge-rare      { background: rgba(139,0,0,0.08);  color: #7a1a1a; border: 1px solid rgba(139,0,0,0.2); }
+    .badge-good      { background: rgba(26,67,46,0.10); color: #1A432E; border: 1px solid rgba(26,67,46,0.25); }
+    .badge-worn      { background: rgba(100,80,50,0.10); color: #5a4010; border: 1px solid rgba(100,80,50,0.25); }
+    .badge {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    /* wishlist heart */
+    .wishlist-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      background: rgba(244,241,234,0.85);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 2;
+    }
+    .wishlist-btn:hover { background: #F4F1EA; transform: scale(1.1); }
+    .wishlist-btn svg { width: 16px; height: 16px; }
+
+    /* ── Cart badge ── */
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #C5A059;
+      color: #1A432E;
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lato', sans-serif;
+    }
+
+    /* ── Genre pills ── */
+    .genre-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 24px;
+      border: 1.5px solid rgba(197,160,89,0.35);
+      background: rgba(255,255,255,0.5);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #2C302E;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .genre-pill:hover, .genre-pill.active {
+      background: #1A432E;
+      border-color: #1A432E;
+      color: #F4F1EA;
+    }
+    .genre-pill .pill-icon { font-size: 1rem; }
+
+    /* ── Trust badges ── */
+    .trust-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .trust-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(197,160,89,0.12);
+      border: 1.5px solid rgba(197,160,89,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ── */
+    .footer-bg {
+      background-color: #2C302E;
+      background-image:
+        radial-gradient(ellipse at 10% 90%, rgba(197,160,89,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(26,67,46,0.3) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='40' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2' y='2' width='8' height='76' rx='1' fill='none' stroke='rgba(197,160,89,0.04)' stroke-width='1'/%3E%3Crect x='14' y='6' width='6' height='68' rx='1' fill='none' stroke='rgba(197,160,89,0.03)' stroke-width='1'/%3E%3Crect x='24' y='1' width='10' height='78' rx='1' fill='none' stroke='rgba(197,160,89,0.05)' stroke-width='1'/%3E%3Crect x='36' y='5' width='3' height='70' rx='1' fill='none' stroke='rgba(197,160,89,0.03)' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: auto, auto, 40px 80px;
+    }
+
+    /* ── Mobile menu ── */
+    #mobile-menu {
+      display: none;
+      border-top: 1px solid rgba(197,160,89,0.2);
+      animation: slideDown 0.2s ease-out;
+    }
+    #mobile-menu.open { display: block; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Payment icons ── */
+    .payment-icon {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.06em;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── Announcement bar ── */
+    .announcement-bar {
+      background: #1A432E;
+      border-bottom: 1px solid rgba(197,160,89,0.25);
+    }
+
+    /* ── Scroll fade-in ── */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in-up { opacity: 1; transform: none; transition: none; }
+      .book-card, .btn-primary, .btn-hero { transition: none; }
+    }
+
+    /* horizontal scroll row for genres */
+    .scroll-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .scroll-row::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+
+<body>
+
+<!-- ════════════════════════════════════════════
+     ANNOUNCEMENT BAR
+════════════════════════════════════════════ -->
+<div class="announcement-bar py-2 px-4 text-center" role="banner" aria-label="Announcement">
+  <p class="text-xs font-body text-parchment/80 tracking-widest uppercase">
+    <span class="text-gold font-bold">✦</span>
+    &nbsp;Free delivery on orders over LKR 2,500 islandwide &nbsp;
+    <span class="text-gold font-bold">✦</span>
+    &nbsp;New arrivals every Saturday&nbsp;
+    <span class="text-gold font-bold">✦</span>
+  </p>
+</div>
+
+<!-- ════════════════════════════════════════════
+     STICKY NAV
+════════════════════════════════════════════ -->
+<header class="nav-sticky" role="banner">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex items-center gap-4 h-16" aria-label="Main navigation">
+
+      <!-- Logo -->
+      <a href="/" class="logo-mark text-base sm:text-lg text-charcoal flex-shrink-0 hover:opacity-80 transition-opacity" aria-label="KIYAWAMU.LK — Home">
+        KIYA<span>WAMU</span>.LK
+      </a>
+
+      <!-- Search bar (hidden on mobile, shown tablet+) -->
+      <div class="hidden sm:flex flex-1 mx-4 search-bar items-center px-3 py-2 max-w-md" role="search">
+        <svg class="w-4 h-4 text-gold flex-shrink-0 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+        </svg>
+        <input
+          type="search"
+          placeholder="Search by title, author, or ISBN…"
+          class="flex-1 text-sm text-charcoal font-body min-w-0"
+          aria-label="Search books"
+        />
+        <button
+          class="flex-shrink-0 ml-2 text-xs font-bold font-body text-gold hover:text-charcoal transition-colors tracking-wider uppercase"
+          aria-label="Submit search"
+        >Search</button>
+      </div>
+
+      <!-- Right cluster -->
+      <div class="flex items-center gap-2 sm:gap-4 ml-auto">
+        <!-- Wishlist -->
+        <a href="/wishlist" class="hidden sm:flex items-center gap-1.5 text-charcoal hover:text-forest transition-colors" aria-label="Wishlist">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+          <span class="text-xs font-body font-bold tracking-wide hidden lg:inline">Wishlist</span>
+        </a>
+
+        <!-- Cart -->
+        <a href="/cart" class="relative flex items-center gap-1.5 text-charcoal hover:text-forest transition-colors" aria-label="Shopping cart, 3 items">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9h14l-2-9M9 21a1 1 0 1 0 2 0 1 1 0 0 0-2 0zm8 0a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+          </svg>
+          <span class="cart-badge" aria-hidden="true">3</span>
+          <span class="text-xs font-body font-bold tracking-wide hidden lg:inline">Cart</span>
+        </a>
+
+        <!-- Account -->
+        <a href="/account" class="hidden sm:flex items-center gap-1.5 text-charcoal hover:text-forest transition-colors" aria-label="Account">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"/>
+          </svg>
+          <span class="text-xs font-body font-bold tracking-wide hidden lg:inline">Account</span>
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button
+          id="hamburger-btn"
+          class="sm:hidden flex flex-col gap-1.5 p-2 text-charcoal hover:text-forest transition-colors"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Open mobile menu"
+        >
+          <span class="block w-6 h-0.5 bg-current transition-all duration-200" id="ham-line-1"></span>
+          <span class="block w-6 h-0.5 bg-current transition-all duration-200" id="ham-line-2"></span>
+          <span class="block w-4 h-0.5 bg-current transition-all duration-200" id="ham-line-3"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Desktop nav links -->
+    <nav class="hidden md:flex items-center gap-8 pb-3 border-t border-gold/10 pt-2" aria-label="Category navigation">
+      <a href="/shop"      class="text-xs font-body font-bold tracking-widest uppercase text-charcoal/70 hover:text-forest hover:tracking-[0.18em] transition-all duration-200">All Books</a>
+      <a href="/fiction"   class="text-xs font-body font-bold tracking-widest uppercase text-charcoal/70 hover:text-forest hover:tracking-[0.18em] transition-all duration-200">Fiction</a>
+      <a href="/rare"      class="text-xs font-body font-bold tracking-widest uppercase text-gold hover:text-charcoal transition-colors duration-200 flex items-center gap-1">
+        ✦ Rare Finds
+      </a>
+      <a href="/academic"  class="text-xs font-body font-bold tracking-widest uppercase text-charcoal/70 hover:text-forest hover:tracking-[0.18em] transition-all duration-200">Academic</a>
+      <a href="/sinhala"   class="text-xs font-body font-bold tracking-widest uppercase text-charcoal/70 hover:text-forest hover:tracking-[0.18em] transition-all duration-200">Sinhala</a>
+      <a href="/tamil"     class="text-xs font-body font-bold tracking-widest uppercase text-charcoal/70 hover:text-forest hover:tracking-[0.18em] transition-all duration-200">Tamil</a>
+      <a href="/children"  class="text-xs font-body font-bold tracking-widest uppercase text-charcoal/70 hover:text-forest hover:tracking-[0.18em] transition-all duration-200">Children's</a>
+      <a href="/sell"      class="text-xs font-body font-bold tracking-widest uppercase text-forest border-b border-forest pb-0.5 hover:border-gold hover:text-gold transition-all duration-200 ml-auto">Sell Your Books →</a>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" aria-label="Mobile navigation menu" role="navigation">
+      <!-- Mobile search -->
+      <div class="px-2 pt-3 pb-2">
+        <div class="search-bar flex items-center px-3 py-2.5">
+          <svg class="w-4 h-4 text-gold flex-shrink-0 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+          </svg>
+          <input type="search" placeholder="Search books…" class="flex-1 text-sm font-body" aria-label="Search books" />
+        </div>
+      </div>
+      <!-- Mobile links -->
+      <ul class="pb-4 px-2 space-y-1">
+        <li><a href="/shop"     class="block px-3 py-2.5 text-sm font-body font-bold text-charcoal hover:bg-gold/10 rounded transition-colors">All Books</a></li>
+        <li><a href="/fiction"  class="block px-3 py-2.5 text-sm font-body font-bold text-charcoal hover:bg-gold/10 rounded transition-colors">Fiction</a></li>
+        <li><a href="/rare"     class="block px-3 py-2.5 text-sm font-body font-bold text-gold hover:bg-gold/10 rounded transition-colors">✦ Rare Finds</a></li>
+        <li><a href="/academic" class="block px-3 py-2.5 text-sm font-body font-bold text-charcoal hover:bg-gold/10 rounded transition-colors">Academic</a></li>
+        <li><a href="/sinhala"  class="block px-3 py-2.5 text-sm font-body font-bold text-charcoal hover:bg-gold/10 rounded transition-colors">Sinhala</a></li>
+        <li><a href="/tamil"    class="block px-3 py-2.5 text-sm font-body font-bold text-charcoal hover:bg-gold/10 rounded transition-colors">Tamil</a></li>
+        <li><a href="/sell"     class="block px-3 py-2.5 text-sm font-body font-bold text-forest hover:bg-forest/10 rounded transition-colors">Sell Your Books →</a></li>
+        <li class="border-t border-gold/20 pt-2 mt-2">
+          <a href="/account"  class="block px-3 py-2.5 text-sm font-body text-charcoal/70 hover:bg-gold/10 rounded transition-colors">My Account</a>
+        </li>
+        <li><a href="/wishlist" class="block px-3 py-2.5 text-sm font-body text-charcoal/70 hover:bg-gold/10 rounded transition-colors">Wishlist</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════════
+     HERO SECTION
+════════════════════════════════════════════ -->
+<section class="hero-section" aria-labelledby="hero-headline">
+  <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 flex flex-col lg:flex-row items-center gap-14">
+
+    <!-- Text side -->
+    <div class="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
+      <p class="font-cinzel text-xs tracking-[0.28em] uppercase text-gold/80 mb-5">
+        Sri Lanka's Oldest Book Archive
+      </p>
+
+      <h1 id="hero-headline" class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-parchment leading-tight">
+        Where Every Page<br/>
+        <em class="italic text-gold">Holds a Secret</em>
+      </h1>
+
+      <span class="hero-ornament"></span>
+
+      <p class="font-body text-base sm:text-lg text-parchment/70 leading-relaxed max-w-lg mx-auto lg:mx-0 mt-4 mb-8">
+        Discover rare, vintage, and beloved used books from across Sri Lanka and beyond — curated with care, delivered islandwide.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <a href="/shop" class="btn-hero" aria-label="Browse the archives">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+          </svg>
+          Shop the Archives
+        </a>
+        <a href="/rare" class="inline-flex items-center gap-2 font-cinzel text-xs tracking-[0.15em] uppercase text-gold/80 hover:text-gold transition-colors pt-4 sm:pt-0 justify-center lg:justify-start">
+          View Rare Finds
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="mt-12 grid grid-cols-3 gap-6 border-t border-gold/20 pt-8 max-w-sm mx-auto lg:mx-0">
+        <div class="text-center lg:text-left">
+          <p class="font-display text-2xl sm:text-3xl font-black text-gold">8,400<span class="text-lg">+</span></p>
+          <p class="font-body text-xs text-parchment/50 tracking-wide mt-0.5">Books in stock</p>
+        </div>
+        <div class="text-center lg:text-left">
+          <p class="font-display text-2xl sm:text-3xl font-black text-gold">25<span class="text-lg">+</span></p>
+          <p class="font-body text-xs text-parchment/50 tracking-wide mt-0.5">Years archived</p>
+        </div>
+        <div class="text-center lg:text-left">
+          <p class="font-display text-2xl sm:text-3xl font-black text-gold">12K<span class="text-lg">+</span></p>
+          <p class="font-body text-xs text-parchment/50 tracking-wide mt-0.5">Happy readers</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative book stack (desktop) -->
+    <div class="hidden lg:flex flex-col items-center gap-0 flex-shrink-0" aria-hidden="true">
+      <!-- Stacked book visual in SVG -->
+      <svg width="240" height="320" viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Book 1 (bottom-left) -->
+        <rect x="20" y="200" width="180" height="30" rx="2" fill="#2d5a42" stroke="rgba(197,160,89,0.4)" stroke-width="1"/>
+        <rect x="20" y="200" width="14" height="30" rx="1" fill="rgba(197,160,89,0.2)"/>
+        <text x="100" y="220" text-anchor="middle" font-family="Playfair Display, serif" font-size="8" fill="rgba(244,241,234,0.7)">THE VILLAGE IN THE JUNGLE</text>
+
+        <!-- Book 2 -->
+        <rect x="30" y="170" width="170" height="28" rx="2" fill="#1c3d2a" stroke="rgba(197,160,89,0.3)" stroke-width="1"/>
+        <rect x="30" y="170" width="12" height="28" rx="1" fill="rgba(197,160,89,0.15)"/>
+        <text x="115" y="188" text-anchor="middle" font-family="Playfair Display, serif" font-size="8" fill="rgba(244,241,234,0.7)">MAHAWANSA CHRONICLES</text>
+
+        <!-- Book 3 -->
+        <rect x="15" y="138" width="185" height="30" rx="2" fill="#3b5e47" stroke="rgba(197,160,89,0.35)" stroke-width="1"/>
+        <rect x="15" y="138" width="16" height="30" rx="1" fill="rgba(197,160,89,0.25)"/>
+        <text x="107" y="157" text-anchor="middle" font-family="Playfair Display, serif" font-size="8" fill="rgba(244,241,234,0.7)">COLLECTED VERSE</text>
+
+        <!-- Book 4 (leaning) -->
+        <rect x="40" y="100" width="155" height="35" rx="2" fill="#2C302E" stroke="rgba(197,160,89,0.4)" stroke-width="1"/>
+        <rect x="40" y="100" width="18" height="35" rx="1" fill="rgba(197,160,89,0.3)"/>
+        <rect x="62" y="110" width="80" height="1" fill="rgba(197,160,89,0.4)"/>
+        <rect x="62" y="122" width="60" height="1" fill="rgba(197,160,89,0.25)"/>
+        <text x="147" y="121" text-anchor="middle" font-family="Playfair Display, serif" font-size="8" fill="rgba(244,241,234,0.6)">RARE VOLUME</text>
+
+        <!-- Book 5 (tall, standing) -->
+        <rect x="150" y="35" width="52" height="200" rx="3" fill="#1A432E" stroke="rgba(197,160,89,0.45)" stroke-width="1"/>
+        <rect x="150" y="35" width="10" height="200" rx="1" fill="rgba(0,0,0,0.3)"/>
+        <rect x="165" y="60" width="28" height="1.5" fill="rgba(197,160,89,0.5)"/>
+        <rect x="165" y="220" width="28" height="1.5" fill="rgba(197,160,89,0.5)"/>
+        <text x="176" y="155" text-anchor="middle" font-family="Playfair Display, serif" font-size="9" fill="rgba(244,241,234,0.85)" transform="rotate(90 176 155)">ORIENTAL TALES · 1948</text>
+
+        <!-- Book 6 (tall, standing slightly different shade) -->
+        <rect x="50" y="25" width="44" height="175" rx="3" fill="#243d2e" stroke="rgba(197,160,89,0.35)" stroke-width="1"/>
+        <rect x="50" y="25" width="8" height="175" rx="1" fill="rgba(0,0,0,0.25)"/>
+        <rect x="62" y="45" width="24" height="1" fill="rgba(197,160,89,0.4)"/>
+        <rect x="62" y="185" width="24" height="1" fill="rgba(197,160,89,0.4)"/>
+        <text x="72" y="125" text-anchor="middle" font-family="Playfair Display, serif" font-size="9" fill="rgba(244,241,234,0.75)" transform="rotate(90 72 125)">COLOMBO DIARIES</text>
+
+        <!-- Decorative star -->
+        <circle cx="120" cy="15" r="3" fill="#C5A059" opacity="0.6"/>
+        <circle cx="108" cy="8" r="1.5" fill="#C5A059" opacity="0.4"/>
+        <circle cx="132" cy="8" r="1.5" fill="#C5A059" opacity="0.4"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- Bottom wave -->
+  <div class="absolute bottom-0 left-0 right-0" aria-hidden="true">
+    <svg viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none" class="w-full h-10 sm:h-12">
+      <path d="M0 48 C360 20 1080 20 1440 48 L1440 48 L0 48Z" fill="#F4F1EA"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     BROWSE BY GENRE
+════════════════════════════════════════════ -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 fade-in-up" aria-labelledby="genre-heading">
+  <div class="flex items-center justify-between mb-5">
+    <h2 id="genre-heading" class="font-cinzel text-xs tracking-[0.22em] uppercase text-gold">Browse by Genre</h2>
+  </div>
+  <div class="scroll-row" role="list" aria-label="Browse book genres">
+    <div role="listitem"><a href="/all" class="genre-pill active"><span class="pill-icon">📚</span> All Books</a></div>
+    <div role="listitem"><a href="/fiction" class="genre-pill"><span class="pill-icon">📖</span> Fiction</a></div>
+    <div role="listitem"><a href="/sinhala" class="genre-pill"><span class="pill-icon">🇱🇰</span> Sinhala</a></div>
+    <div role="listitem"><a href="/tamil" class="genre-pill"><span class="pill-icon">🌺</span> Tamil</a></div>
+    <div role="listitem"><a href="/history" class="genre-pill"><span class="pill-icon">🏛️</span> History</a></div>
+    <div role="listitem"><a href="/philosophy" class="genre-pill"><span class="pill-icon">🧠</span> Philosophy</a></div>
+    <div role="listitem"><a href="/science" class="genre-pill"><span class="pill-icon">🔬</span> Science</a></div>
+    <div role="listitem"><a href="/children" class="genre-pill"><span class="pill-icon">🌈</span> Children's</a></div>
+    <div role="listitem"><a href="/academic" class="genre-pill"><span class="pill-icon">🎓</span> Academic</a></div>
+    <div role="listitem"><a href="/poetry" class="genre-pill"><span class="pill-icon">✒️</span> Poetry</a></div>
+    <div role="listitem"><a href="/religion" class="genre-pill"><span class="pill-icon">🪷</span> Religion</a></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FEATURED OLD BOOKS
+════════════════════════════════════════════ -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20" aria-labelledby="featured-heading">
+
+  <div class="section-divider fade-in-up">
+    <span class="section-eyebrow">Featured Old Books</span>
+  </div>
+
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 fade-in-up">
+    <div>
+      <h2 id="featured-heading" class="font-display text-3xl sm:text-4xl font-black text-charcoal leading-tight">
+        Curated from the Archives
+      </h2>
+      <p class="font-body text-sm text-charcoal/60 mt-1.5 leading-relaxed">
+        Hand-selected volumes with stories to tell.
+      </p>
+    </div>
+    <a href="/shop" class="btn-primary flex-shrink-0 self-start sm:self-auto" aria-label="View all books in the archive">
+      View All Books
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Book grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6" role="list" aria-label="Featured books">
+
+    <!-- ── Card 1 ── -->
+    <article class="book-card fade-in-up" role="listitem" aria-label="The Village in the Jungle by Leonard Woolf">
+      <div class="book-cover" style="background: linear-gradient(145deg, #1c2b22, #1A432E, #0d1f14);">
+        <div class="book-spine-lines"></div>
+        <div class="book-cover-inner">
+          <div class="book-cover-icon">🌿</div>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-title">The Village in the Jungle</p>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-author">Leonard Woolf</p>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#C5A059" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-2 mb-1.5">
+          <span class="badge badge-vintage">Vintage</span>
+          <span class="font-body text-xs text-charcoal/40">1913 Ed.</span>
+        </div>
+        <h3 class="font-display text-base font-bold text-charcoal leading-snug mt-1 mb-0.5 line-clamp-2">The Village in the Jungle</h3>
+        <p class="font-body text-xs text-charcoal/55 mb-3">Leonard Woolf</p>
+        <div class="flex items-center gap-2 mb-4 mt-auto">
+          <span class="font-display text-xl font-black text-forest">LKR 1,450</span>
+          <span class="font-body text-xs text-charcoal/35 line-through">LKR 2,200</span>
+        </div>
+        <button class="btn-outline" aria-label="Add The Village in the Jungle to cart">
+          Add to Cart
+        </button>
+      </div>
+    </article>
+
+    <!-- ── Card 2 ── -->
+    <article class="book-card fade-in-up" role="listitem" aria-label="Mahawansa translated by Wilhelm Geiger">
+      <div class="book-cover" style="background: linear-gradient(145deg, #2a1e10, #5a3a18, #3d2710);">
+        <div class="book-spine-lines" style="background: repeating-linear-gradient(180deg, rgba(197,160,89,0.45) 0, rgba(197,160,89,0.45) 1px, transparent 1px, transparent 8px);"></div>
+        <div class="book-cover-inner">
+          <div class="book-cover-icon">🏯</div>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-title">Mahawansa — The Great Chronicle</p>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-author">Trans. by Wilhelm Geiger</p>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#C5A059" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-2 mb-1.5">
+          <span class="badge badge-rare">Rare</span>
+          <span class="font-body text-xs text-charcoal/40">1912 Ed.</span>
+        </div>
+        <h3 class="font-display text-base font-bold text-charcoal leading-snug mt-1 mb-0.5 line-clamp-2">Mahawansa — The Great Chronicle</h3>
+        <p class="font-body text-xs text-charcoal/55 mb-3">Trans. by Wilhelm Geiger</p>
+        <div class="flex items-center gap-2 mb-4 mt-auto">
+          <span class="font-display text-xl font-black text-forest">LKR 3,800</span>
+        </div>
+        <button class="btn-outline" aria-label="Add Mahawansa to cart">
+          Add to Cart
+        </button>
+      </div>
+    </article>
+
+    <!-- ── Card 3 ── -->
+    <article class="book-card fade-in-up" role="listitem" aria-label="Running in the Family by Michael Ondaatje">
+      <div class="book-cover" style="background: linear-gradient(145deg, #1a1a2e, #2d2d5a, #1a1a3a);">
+        <div class="book-spine-lines" style="background: repeating-linear-gradient(180deg, rgba(200,180,255,0.25) 0, rgba(200,180,255,0.25) 1px, transparent 1px, transparent 8px);"></div>
+        <div class="book-cover-inner">
+          <div class="book-cover-icon">🌙</div>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-title">Running in the Family</p>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-author">Michael Ondaatje</p>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#C5A059" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-2 mb-1.5">
+          <span class="badge badge-good">Good</span>
+          <span class="font-body text-xs text-charcoal/40">1982 Ed.</span>
+        </div>
+        <h3 class="font-display text-base font-bold text-charcoal leading-snug mt-1 mb-0.5 line-clamp-2">Running in the Family</h3>
+        <p class="font-body text-xs text-charcoal/55 mb-3">Michael Ondaatje</p>
+        <div class="flex items-center gap-2 mb-4 mt-auto">
+          <span class="font-display text-xl font-black text-forest">LKR 750</span>
+          <span class="font-body text-xs text-charcoal/35 line-through">LKR 1,200</span>
+        </div>
+        <button class="btn-outline" aria-label="Add Running in the Family to cart">
+          Add to Cart
+        </button>
+      </div>
+    </article>
+
+    <!-- ── Card 4 ── -->
+    <article class="book-card fade-in-up" role="listitem" aria-label="Anil's Ghost by Michael Ondaatje">
+      <div class="book-cover" style="background: linear-gradient(145deg, #2b1010, #5a1818, #3d1010);">
+        <div class="book-spine-lines" style="background: repeating-linear-gradient(180deg, rgba(255,160,160,0.2) 0, rgba(255,160,160,0.2) 1px, transparent 1px, transparent 8px);"></div>
+        <div class="book-cover-inner">
+          <div class="book-cover-icon">🕯️</div>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-title">Anil's Ghost</p>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-author">Michael Ondaatje</p>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#C5A059" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-2 mb-1.5">
+          <span class="badge badge-worn">Well Worn</span>
+          <span class="font-body text-xs text-charcoal/40">2000 Ed.</span>
+        </div>
+        <h3 class="font-display text-base font-bold text-charcoal leading-snug mt-1 mb-0.5 line-clamp-2">Anil's Ghost</h3>
+        <p class="font-body text-xs text-charcoal/55 mb-3">Michael Ondaatje</p>
+        <div class="flex items-center gap-2 mb-4 mt-auto">
+          <span class="font-display text-xl font-black text-forest">LKR 550</span>
+          <span class="font-body text-xs text-charcoal/35 line-through">LKR 900</span>
+        </div>
+        <button class="btn-outline" aria-label="Add Anil's Ghost to cart">
+          Add to Cart
+        </button>
+      </div>
+    </article>
+
+    <!-- ── Card 5 ── -->
+    <article class="book-card fade-in-up" role="listitem" aria-label="Sinhala dictionary and phrases, colonial edition">
+      <div class="book-cover" style="background: linear-gradient(145deg, #0e2218, #1A432E, #163520);">
+        <div class="book-spine-lines"></div>
+        <div class="book-cover-inner">
+          <div class="book-cover-icon">📜</div>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-title">Sinhala-English Dictionary</p>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-author">Rev. Benjamin Clough</p>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#C5A059" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-2 mb-1.5">
+          <span class="badge badge-rare">Rare</span>
+          <span class="font-body text-xs text-charcoal/40">1892 Ed.</span>
+        </div>
+        <h3 class="font-display text-base font-bold text-charcoal leading-snug mt-1 mb-0.5 line-clamp-2">Sinhala-English Dictionary</h3>
+        <p class="font-body text-xs text-charcoal/55 mb-3">Rev. Benjamin Clough</p>
+        <div class="flex items-center gap-2 mb-4 mt-auto">
+          <span class="font-display text-xl font-black text-forest">LKR 5,200</span>
+        </div>
+        <button class="btn-outline" aria-label="Add Sinhala-English Dictionary to cart">
+          Add to Cart
+        </button>
+      </div>
+    </article>
+
+    <!-- ── Card 6 ── -->
+    <article class="book-card fade-in-up" role="listitem" aria-label="Collected Short Stories by Siri Gunasinghe">
+      <div class="book-cover" style="background: linear-gradient(145deg, #2a2010, #5a4520, #3d3015);">
+        <div class="book-spine-lines" style="background: repeating-linear-gradient(180deg, rgba(255,220,120,0.2) 0, rgba(255,220,120,0.2) 1px, transparent 1px, transparent 8px);"></div>
+        <div class="book-cover-inner">
+          <div class="book-cover-icon">✒️</div>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-title">Collected Short Stories</p>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-author">Siri Gunasinghe</p>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#C5A059" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-2 mb-1.5">
+          <span class="badge badge-vintage">Vintage</span>
+          <span class="font-body text-xs text-charcoal/40">1975 Ed.</span>
+        </div>
+        <h3 class="font-display text-base font-bold text-charcoal leading-snug mt-1 mb-0.5 line-clamp-2">Collected Short Stories</h3>
+        <p class="font-body text-xs text-charcoal/55 mb-3">Siri Gunasinghe</p>
+        <div class="flex items-center gap-2 mb-4 mt-auto">
+          <span class="font-display text-xl font-black text-forest">LKR 900</span>
+          <span class="font-body text-xs text-charcoal/35 line-through">LKR 1,400</span>
+        </div>
+        <button class="btn-outline" aria-label="Add Collected Short Stories to cart">
+          Add to Cart
+        </button>
+      </div>
+    </article>
+
+    <!-- ── Card 7 ── -->
+    <article class="book-card fade-in-up" role="listitem" aria-label="Colombo: A Novel by Carl Muller">
+      <div class="book-cover" style="background: linear-gradient(145deg, #1a1018, #3d2540, #2a1a30);">
+        <div class="book-spine-lines" style="background: repeating-linear-gradient(180deg, rgba(200,180,255,0.25) 0, rgba(200,180,255,0.25) 1px, transparent 1px, transparent 8px);"></div>
+        <div class="book-cover-inner">
+          <div class="book-cover-icon">🌆</div>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-title">Colombo: A Novel</p>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-author">Carl Muller</p>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#C5A059" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-2 mb-1.5">
+          <span class="badge badge-good">Good</span>
+          <span class="font-body text-xs text-charcoal/40">1995 Ed.</span>
+        </div>
+        <h3 class="font-display text-base font-bold text-charcoal leading-snug mt-1 mb-0.5 line-clamp-2">Colombo: A Novel</h3>
+        <p class="font-body text-xs text-charcoal/55 mb-3">Carl Muller</p>
+        <div class="flex items-center gap-2 mb-4 mt-auto">
+          <span class="font-display text-xl font-black text-forest">LKR 680</span>
+        </div>
+        <button class="btn-outline" aria-label="Add Colombo: A Novel to cart">
+          Add to Cart
+        </button>
+      </div>
+    </article>
+
+    <!-- ── Card 8 ── -->
+    <article class="book-card fade-in-up" role="listitem" aria-label="Divaina Madhu Rathriya poetry collection">
+      <div class="book-cover" style="background: linear-gradient(145deg, #10201a, #1c3d2e, #122818);">
+        <div class="book-spine-lines"></div>
+        <div class="book-cover-inner">
+          <div class="book-cover-icon">🪷</div>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-title">Divaina Madhu Rathriya</p>
+          <div class="book-cover-ornament"></div>
+          <p class="book-cover-author">Mahagama Sekara</p>
+        </div>
+        <button class="wishlist-btn" aria-label="Add to wishlist">
+          <svg fill="none" viewBox="0 0 24 24" stroke="#C5A059" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-2 mb-1.5">
+          <span class="badge badge-vintage">Vintage</span>
+          <span class="font-body text-xs text-charcoal/40">1968 Ed.</span>
+        </div>
+        <h3 class="font-display text-base font-bold text-charcoal leading-snug mt-1 mb-0.5 line-clamp-2">Divaina Madhu Rathriya</h3>
+        <p class="font-body text-xs text-charcoal/55 mb-3">Mahagama Sekara</p>
+        <div class="flex items-center gap-2 mb-4 mt-auto">
+          <span class="font-display text-xl font-black text-forest">LKR 1,100</span>
+          <span class="font-body text-xs text-charcoal/35 line-through">LKR 1,800</span>
+        </div>
+        <button class="btn-outline" aria-label="Add Divaina Madhu Rathriya to cart">
+          Add to Cart
+        </button>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- View more -->
+  <div class="text-center mt-10 fade-in-up">
+    <a href="/shop" class="btn-primary-gold" aria-label="Browse all books in the archive">
+      Browse All 8,400+ Books
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SELL YOUR BOOKS BANNER
+════════════════════════════════════════════ -->
+<section class="bg-forest py-14 sm:py-16 fade-in-up" aria-labelledby="sell-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center gap-8 text-center sm:text-left">
+    <div class="text-5xl flex-shrink-0" aria-hidden="true">📦</div>
+    <div class="flex-1">
+      <p class="font-cinzel text-xs tracking-[0.22em] uppercase text-gold/70 mb-2">We buy your books</p>
+      <h2 id="sell-heading" class="font-display text-2xl sm:text-3xl font-black text-parchment mb-2 leading-tight">
+        Have Old Books Gathering Dust?
+      </h2>
+      <p class="font-body text-sm text-parchment/60 leading-relaxed max-w-xl">
+        Turn your collection into cash. We evaluate and purchase used books islandwide — from a single title to an entire library.
+      </p>
+    </div>
+    <a href="/sell" class="btn-hero flex-shrink-0" aria-label="Start the process of selling your books">
+      Sell Your Books
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     TRUST BADGES
+════════════════════════════════════════════ -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 fade-in-up" aria-labelledby="trust-heading">
+  <h2 id="trust-heading" class="sr-only">Why shop with us</h2>
+
+  <div class="section-divider mb-10">
+    <span class="section-eyebrow">Why Kiyawamu</span>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-y sm:divide-y-0 divide-gold/15 border border-gold/15 rounded-lg overflow-hidden">
+
+    <div class="trust-badge bg-cream/50">
+      <div class="trust-icon-wrap">
+        <svg class="w-6 h-6 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="font-display text-sm font-bold text-charcoal leading-tight">Authenticity Guaranteed</p>
+        <p class="font-body text-xs text-charcoal/55 mt-1 leading-relaxed">Every book is inspected and accurately described before listing.</p>
+      </div>
+    </div>
+
+    <div class="trust-badge bg-cream/50">
+      <div class="trust-icon-wrap">
+        <svg class="w-6 h-6 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+        </svg>
+      </div>
+      <div>
+        <p class="font-display text-sm font-bold text-charcoal leading-tight">Islandwide Delivery</p>
+        <p class="font-body text-xs text-charcoal/55 mt-1 leading-relaxed">Fast, careful delivery to every corner of Sri Lanka in 2–5 days.</p>
+      </div>
+    </div>
+
+    <div class="trust-badge bg-cream/50">
+      <div class="trust-icon-wrap">
+        <svg class="w-6 h-6 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+        </svg>
+      </div>
+      <div>
+        <p class="font-display text-sm font-bold text-charcoal leading-tight">Easy Returns</p>
+        <p class="font-body text-xs text-charcoal/55 mt-1 leading-relaxed">Not what you expected? Return within 7 days, no questions asked.</p>
+      </div>
+    </div>
+
+    <div class="trust-badge bg-cream/50">
+      <div class="trust-icon-wrap">
+        <svg class="w-6 h-6 text-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="font-display text-sm font-bold text-charcoal leading-tight">Secure Payments</p>
+        <p class="font-body text-xs text-charcoal/55 mt-1 leading-relaxed">Pay safely via card, bank transfer, or cash on delivery.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     NEWSLETTER
+════════════════════════════════════════════ -->
+<section class="bg-parchment-dark border-y border-gold/20 py-14 sm:py-16 fade-in-up" aria-labelledby="newsletter-heading">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+    <span class="font-cinzel text-xs tracking-[0.22em] uppercase text-gold block mb-3">The Reading Room</span>
+    <h2 id="newsletter-heading" class="font-display text-2xl sm:text-3xl font-black text-charcoal mb-3 leading-tight">
+      Rare Arrivals. First to Know.
+    </h2>
+    <p class="font-body text-sm text-charcoal/55 mb-8 leading-relaxed">
+      Join 4,200+ readers who get our weekly curated picks, rare finds alerts, and Sri Lanka book news.
+    </p>
+    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" aria-label="Newsletter sign up">
+      <label for="newsletter-email" class="sr-only">Your email address</label>
+      <input
+        id="newsletter-email"
+        type="email"
+        placeholder="your@email.com"
+        required
+        class="flex-1 px-4 py-3 text-sm font-body text-charcoal bg-white border-2 border-gold/30 rounded focus:outline-none focus:border-forest focus:ring-2 focus:ring-forest/15 transition-all"
+        aria-required="true"
+      />
+      <button type="submit" class="btn-primary flex-shrink-0 justify-center">
+        Subscribe
+      </button>
+    </form>
+    <p class="font-body text-xs text-charcoal/35 mt-4">No spam. Unsubscribe any time.</p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer-bg" role="contentinfo">
+
+  <!-- Main footer grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+
+      <!-- Brand -->
+      <div class="sm:col-span-2 lg:col-span-1">
+        <a href="/" class="logo-mark text-xl text-parchment/90 hover:opacity-80 transition-opacity block mb-4" aria-label="KIYAWAMU.LK Homepage">
+          KIYA<span>WAMU</span>.LK
+        </a>
+        <p class="font-body text-sm text-parchment/45 leading-relaxed mb-5">
+          Sri Lanka's premier destination for rare, vintage, and cherished used books. Serving readers islandwide since 1999.
+        </p>
+        <!-- Social icons -->
+        <div class="flex gap-3" aria-label="Social media links">
+          <a href="https://facebook.com" class="w-9 h-9 rounded-full border border-parchment/10 flex items-center justify-center text-parchment/40 hover:border-gold hover:text-gold transition-all" aria-label="Facebook" rel="noopener noreferrer">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+          </a>
+          <a href="https://instagram.com" class="w-9 h-9 rounded-full border border-parchment/10 flex items-center justify-center text-parchment/40 hover:border-gold hover:text-gold transition-all" aria-label="Instagram" rel="noopener noreferrer">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
+          </a>
+          <a href="https://wa.me/94XXXXXXXXX" class="w-9 h-9 rounded-full border border-parchment/10 flex items-center justify-center text-parchment/40 hover:border-gold hover:text-gold transition-all" aria-label="WhatsApp" rel="noopener noreferrer">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <nav aria-labelledby="footer-nav-heading">
+        <h3 id="footer-nav-heading" class="font-cinzel text-xs tracking-[0.18em] uppercase text-gold mb-5">Quick Links</h3>
+        <ul class="space-y-3">
+          <li><a href="/shop"     class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">All Books</a></li>
+          <li><a href="/rare"     class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Rare Finds</a></li>
+          <li><a href="/sinhala" class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Sinhala Books</a></li>
+          <li><a href="/academic" class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Academic</a></li>
+          <li><a href="/sell"     class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Sell Your Books</a></li>
+          <li><a href="/new"      class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">New Arrivals</a></li>
+        </ul>
+      </nav>
+
+      <!-- Help -->
+      <nav aria-labelledby="footer-help-heading">
+        <h3 id="footer-help-heading" class="font-cinzel text-xs tracking-[0.18em] uppercase text-gold mb-5">Help</h3>
+        <ul class="space-y-3">
+          <li><a href="/faq"         class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">FAQ</a></li>
+          <li><a href="/shipping"    class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Shipping Info</a></li>
+          <li><a href="/returns"     class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Returns Policy</a></li>
+          <li><a href="/condition"   class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Book Condition Guide</a></li>
+          <li><a href="/contact"     class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Contact Us</a></li>
+          <li><a href="/privacy"     class="font-body text-sm text-parchment/50 hover:text-gold transition-colors duration-200">Privacy Policy</a></li>
+        </ul>
+      </nav>
+
+      <!-- Contact -->
+      <address class="not-italic">
+        <h3 class="font-cinzel text-xs tracking-[0.18em] uppercase text-gold mb-5">Contact</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-gold/60 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span class="font-body text-sm text-parchment/45 leading-relaxed">42, Maligawatte Rd,<br/>Colombo 10, Sri Lanka</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            <a href="tel:+94112345678" class="font-body text-sm text-parchment/45 hover:text-gold transition-colors">+94 11 234 5678</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <a href="mailto:hello@kiyawamu.lk" class="font-body text-sm text-parchment/45 hover:text-gold transition-colors">hello@kiyawamu.lk</a>
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-gold/60 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span class="font-body text-sm text-parchment/45 leading-relaxed">Mon–Sat: 9am – 6pm<br/>Sun: 10am – 3pm</span>
+          </li>
+        </ul>
+      </address>
+
+    </div>
+  </div>
+
+  <!-- Payment methods & bottom bar -->
+  <div class="border-t border-parchment/8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+
+        <!-- Payment icons -->
+        <div class="flex flex-wrap gap-2 items-center" aria-label="Accepted payment methods">
+          <span class="font-body text-xs text-parchment/30 tracking-wide uppercase mr-1">We accept:</span>
+          <span class="payment-icon">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 7a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V7zm2 0v10h16V7H4zm0 4h16v2H4v-2z"/></svg>
+            Visa
+          </span>
+          <span class="payment-icon">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 7a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V7zm2 0v10h16V7H4zm0 4h16v2H4v-2z"/></svg>
+            Mastercard
+          </span>
+          <span class="payment-icon">🏦 Bank Transfer</span>
+          <span class="payment-icon">💵 Cash on Delivery</span>
+          <span class="payment-icon">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            iPay
+          </span>
+          <span class="payment-icon">FriMi</span>
+        </div>
+
+        <!-- Copyright -->
+        <p class="font-body text-xs text-parchment/25 text-center sm:text-right">
+          © 2025 KIYAWAMU.LK · All rights reserved ·
+          <a href="/privacy" class="hover:text-gold/60 transition-colors ml-1">Privacy</a> ·
+          <a href="/terms"   class="hover:text-gold/60 transition-colors ml-1">Terms</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+(function() {
+  // ── Mobile menu toggle ──
+  const hamburger = document.getElementById('hamburger-btn');
+  const menu      = document.getElementById('mobile-menu');
+  const line1     = document.getElementById('ham-line-1');
+  const line2     = document.getElementById('ham-line-2');
+  const line3     = document.getElementById('ham-line-3');
+
+  if (hamburger && menu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      // Animate lines
+      if (isOpen) {
+        line1.style.transform = 'translateY(8px) rotate(45deg)';
+        line2.style.opacity   = '0';
+        line3.style.transform = 'translateY(-8px) rotate(-45deg)';
+        line3.style.width     = '24px';
+      } else {
+        line1.style.transform = '';
+        line2.style.opacity   = '';
+        line3.style.transform = '';
+        line3.style.width     = '';
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        line1.style.transform = '';
+        line2.style.opacity   = '';
+        line3.style.transform = '';
+        line3.style.width     = '';
+      }
+    });
+  }
+
+  // ── Scroll-based fade-in ──
+  const fadeEls = document.querySelectorAll('.fade-in-up');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger children if they're book cards
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(el => observer.observe(el));
+  } else {
+    fadeEls.forEach(el => el.classList.add('visible'));
+  }
+
+  // ── Book card stagger ──
+  const cards = document.querySelectorAll('.book-card.fade-in-up');
+  if ('IntersectionObserver' in window) {
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Array.from(cards).indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), index * 60);
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+    cards.forEach(card => cardObserver.observe(card));
+  }
+
+  // ── Genre pill active state ──
+  document.querySelectorAll('.genre-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.genre-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+
+  // ── Add to cart micro-interaction ──
+  document.querySelectorAll('.btn-outline').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const original = btn.textContent;
+      btn.textContent = '✓ Added!';
+      btn.style.background = '#1A432E';
+      btn.style.color = '#F4F1EA';
+      btn.style.borderColor = '#1A432E';
+      const badge = document.querySelector('.cart-badge');
+      if (badge) badge.textContent = parseInt(badge.textContent || 0) + 1;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 1800);
+    });
+  });
+
+  // ── Wishlist toggle ──
+  document.querySelectorAll('.wishlist-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const svg = btn.querySelector('svg');
+      const isWished = btn.dataset.wished === 'true';
+      if (isWished) {
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', '#C5A059');
+        btn.dataset.wished = 'false';
+        btn.setAttribute('aria-label', 'Add to wishlist');
+      } else {
+        svg.setAttribute('fill', '#C5A059');
+        svg.setAttribute('stroke', '#C5A059');
+        btn.dataset.wished = 'true';
+        btn.setAttribute('aria-label', 'Remove from wishlist');
+      }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
